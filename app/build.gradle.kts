@@ -54,6 +54,10 @@ android {
     }
 }
 
+base {
+    archivesName.set("ClipboardReplacer-${android.defaultConfig.versionName}")
+}
+
 kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
