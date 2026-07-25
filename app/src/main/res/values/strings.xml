@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clipboard Replacer</string>
+    <string name="monitor_label">Show notification</string>
+    <string name="monitor_hint">Tap the notification to open Clipboard Replacer, where URLs can be fixed</string>
+    <string name="copy_section_title">Copy fixed URLs</string>
+    <string name="copy_section_hint_empty">Start by copying a link from X or YouTube</string>
+    <string name="copy_section_waiting">Waiting for valid URL...</string>
+    <string name="copy_section_hint_x">X.com link detected, copy the modified link with the options below</string>
+    <string name="copy_section_hint_youtube">YouTube link detected, copy the cleaned link below</string>
+    <string name="youtube_bullet_si">Share IDs are stripped</string>
+    <string name="youtube_bullet_si_code">\?si=</string>
+    <string name="youtube_bullet_timestamp">Timestamps are preserved</string>
+    <string name="youtube_bullet_short_domain">Uses shortened</string>
+    <string name="youtube_bullet_short_domain_code">youtu.be</string>
+    <string name="youtube_bullet_short_domain_suffix">domain</string>
+    <string name="action_clean_youtube">Copy cleaned URL</string>
+    <string name="action_use_fixvx">Copy fixvx.com</string>
+    <string name="action_use_fixupx">Copy fixupx.com</string>
+    <string name="action_use_custom_x">Copy with custom domain</string>
+    <string name="custom_x_domain_label">Custom domain</string>
+    <string name="custom_x_domain_placeholder">e.g. fixvx.com</string>
+    <string name="custom_x_domain_invalid">Enter a domain like fixvx.com</string>
+    <string name="action_stop">Stop</string>
+    <string name="notification_ongoing_text">Monitoring clipboard — tap to open</string>
+    <string name="notification_prompt_text">Tap to fix copied link</string>
+    <string name="channel_ongoing_name">Clipboard monitor</string>
+    <string name="channel_ongoing_desc">Persistent notification while monitoring is on</string>
+    <string name="channel_prompt_name">Fix copied link</string>
+    <string name="channel_prompt_desc">Prompts you to rewrite a newly copied link</string>
+    <string name="toast_clipboard_empty">Clipboard is empty</string>
+    <string name="toast_nothing_to_fix">No X or YouTube links to fix</string>
+    <string name="toast_fixed">Clipboard updated</string>
+</resources>
