@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import android.net.Uri
 import androidx.core.net.toUri

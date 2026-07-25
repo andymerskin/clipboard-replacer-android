@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.andymerskin.clipboardreplacer"
+    namespace = "dev.munchkin.clipboardreplacer"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "dev.andymerskin.clipboardreplacer"
+        applicationId = "dev.munchkin.clipboardreplacer"
         minSdk = 26
         targetSdk = 37
         versionCode = 1

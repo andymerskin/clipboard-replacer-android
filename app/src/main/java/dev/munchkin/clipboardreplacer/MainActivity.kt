@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import android.Manifest
 import android.app.NotificationManager
@@ -52,7 +52,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
-import dev.andymerskin.clipboardreplacer.ui.theme.ClipboardReplacerTheme
+import dev.munchkin.clipboardreplacer.ui.theme.ClipboardReplacerTheme
 
 class MainActivity : ComponentActivity() {
     private val prefs by lazy {

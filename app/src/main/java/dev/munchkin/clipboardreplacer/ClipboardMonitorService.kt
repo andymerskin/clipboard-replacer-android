@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -162,9 +162,9 @@ class ClipboardMonitorService : Service() {
             .setPriority(NotificationCompat.PRIORITY_LOW)
 
     companion object {
-        const val ACTION_STOP = "dev.andymerskin.clipboardreplacer.STOP"
+        const val ACTION_STOP = "dev.munchkin.clipboardreplacer.STOP"
         const val EXTRA_FROM_ONGOING_NOTIFICATION =
-            "dev.andymerskin.clipboardreplacer.FROM_ONGOING_NOTIFICATION"
+            "dev.munchkin.clipboardreplacer.FROM_ONGOING_NOTIFICATION"
         private const val CHANNEL_ONGOING = "clipboard_monitor_v5"
         private const val CHANNEL_PROMPT = "clipboard_fix_prompt_v5"
         private const val ONGOING_NOTIFICATION_ID = 1001

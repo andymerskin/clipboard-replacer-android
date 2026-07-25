@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import android.content.Context
 import androidx.core.content.edit

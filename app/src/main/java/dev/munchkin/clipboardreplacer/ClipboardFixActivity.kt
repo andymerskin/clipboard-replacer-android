@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import android.app.NotificationManager
 import android.os.Bundle

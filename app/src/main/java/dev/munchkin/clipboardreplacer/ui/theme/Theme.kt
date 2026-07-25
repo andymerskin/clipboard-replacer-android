@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer.ui.theme
+package dev.munchkin.clipboardreplacer.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

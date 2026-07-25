@@ -1,4 +1,4 @@
-package dev.andymerskin.clipboardreplacer
+package dev.munchkin.clipboardreplacer
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
