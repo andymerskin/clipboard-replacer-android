@@ -21,8 +21,9 @@ The ongoing notification opens the main screen for manual host selection. **Copy
 
 ## Screenshots
 <p align="center">
-  <img src="assets/screenshot-x.png" alt="X link rewrite options" width="280" height="455" />
-  <img src="assets/screenshot-youtube.png" alt="YouTube link cleaning" width="280" height="455" />
+  <img src="assets/screenshot-waiting.png" alt="Waiting for a valid link" width="240" height="427" />
+  <img src="assets/screenshot-x.png" alt="X link rewrite options" width="240" height="427" />
+  <img src="assets/screenshot-youtube.png" alt="YouTube link cleaning" width="240" height="427" />
 </p>
 
 ## Sideloading a build on your device
