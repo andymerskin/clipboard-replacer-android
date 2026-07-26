@@ -75,3 +75,8 @@ Install it one of these ways:
 - `ClipboardMonitorService` — FGS + clipboard listener + notifications
 - `ClipboardFixActivity` — translucent focus activity for one-tap rewrite from the prompt
 - `MainActivity` — toggle monitoring + manual fix / host selection
+
+## Todos
+
+- [ ] CI / CD for testing and building a debug APK for GitHub Releases
+- [ ] Clean up typography and other UI cruft
