@@ -27,7 +27,11 @@ The ongoing notification opens the main screen for manual host selection. **Copy
 
 ## Sideloading a build on your device
 
-Build a debug APK:
+**Preferred:** download the signed release APK from [GitHub Releases](https://github.com/andymerskin/clipboard-replacer-android/releases).
+
+If you previously installed a **debug** build (for example `v0.1.1`), uninstall it first. Debug and release APKs use different signing keys, so Android will not upgrade one over the other.
+
+### Local debug build
 
 ```bash
 ./gradlew :app:assembleDebug
@@ -62,16 +66,31 @@ Install it one of these ways:
 ./gradlew :app:testDebugUnitTest
 ```
 
-## Releases
+For a local signed release APK, create a gitignored `keystore.properties` in the repo root:
 
-Push a version tag to publish a debug APK on GitHub Releases:
-
-```bash
-git tag v0.1.1
-git push origin v0.1.1
+```properties
+storeFile=clipboard-replacer-release.keystore
+storePassword=…
+keyAlias=clipboard-replacer
+keyPassword=…
 ```
 
-The release workflow derives `versionName` and `versionCode` from the tag (no Gradle edit needed). CI runs unit tests on pull requests and pushes to `main`.
+Then:
+
+```bash
+./gradlew :app:assembleRelease
+```
+
+## Releases
+
+Push a version tag to publish a **signed release APK** on GitHub Releases:
+
+```bash
+git tag v0.1.2
+git push origin v0.1.2
+```
+
+The release workflow derives `versionName` and `versionCode` from the tag (no Gradle edit needed) and signs with repository secrets (`SIGNING_KEYSTORE_BASE64`, `SIGNING_STORE_PASSWORD`, `SIGNING_KEY_ALIAS`, `SIGNING_KEY_PASSWORD`). CI runs unit tests on pull requests and pushes to `main`.
 
 ## Requirements
 
@@ -91,3 +110,4 @@ The release workflow derives `versionName` and `versionCode` from the tag (no Gr
 
 - [x] CI / CD for testing and building a debug APK for GitHub Releases
 - [x] Clean up typography and other UI cruft
+- [x] Signed release APKs on GitHub Releases

@@ -1,6 +1,37 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
+}
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
+}
+
+fun signingValue(envName: String, propertyName: String): String? =
+    System.getenv(envName)?.takeIf { it.isNotBlank() }
+        ?: keystoreProperties.getProperty(propertyName)?.takeIf { it.isNotBlank() }
+
+val releaseStoreFilePath = signingValue("SIGNING_STORE_FILE", "storeFile")
+val releaseStorePassword = signingValue("SIGNING_STORE_PASSWORD", "storePassword")
+val releaseKeyAlias = signingValue("SIGNING_KEY_ALIAS", "keyAlias")
+val releaseKeyPassword = signingValue("SIGNING_KEY_PASSWORD", "keyPassword")
+val hasReleaseSigning =
+    !releaseStoreFilePath.isNullOrBlank() &&
+        !releaseStorePassword.isNullOrBlank() &&
+        !releaseKeyAlias.isNullOrBlank() &&
+        !releaseKeyPassword.isNullOrBlank()
+
+val requireReleaseSigning = System.getenv("REQUIRE_RELEASE_SIGNING") == "true"
+
+if (requireReleaseSigning && !hasReleaseSigning) {
+    error(
+        "Release signing is required (REQUIRE_RELEASE_SIGNING=true) but signing credentials are not configured.",
+    )
 }
 
 android {
@@ -25,6 +56,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = rootProject.file(releaseStoreFilePath!!)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -32,6 +74,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 
