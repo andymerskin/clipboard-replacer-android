@@ -121,10 +121,7 @@ class ClipboardMonitorService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
-        return baseNotificationBuilder(
-            CHANNEL_ONGOING,
-            getString(R.string.notification_ongoing_text),
-        )
+        return baseNotificationBuilder(CHANNEL_ONGOING)
             .setContentIntent(openApp)
             .addAction(0, getString(R.string.action_stop), stop)
             .setOngoing(true)
@@ -152,12 +149,12 @@ class ClipboardMonitorService : Service() {
 
     private fun baseNotificationBuilder(
         channelId: String,
-        contentText: String,
+        contentText: String? = null,
     ): NotificationCompat.Builder =
         NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(getString(R.string.app_name))
-            .setContentText(contentText)
+            .apply { if (contentText != null) setContentText(contentText) }
             .setSilent(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
 

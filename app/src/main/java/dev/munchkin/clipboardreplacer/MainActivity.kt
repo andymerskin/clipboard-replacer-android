@@ -292,15 +292,19 @@ private fun MainScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Column(modifier = Modifier.weight(1f)) {
+                Column(
+                    modifier = Modifier.weight(1f).padding(end = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
                     Text(
                         text = stringResource(R.string.monitor_label),
                         style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
                     )
                     Text(
                         text = stringResource(R.string.monitor_hint),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.outline,
                     )
                 }
                 Switch(
@@ -309,13 +313,6 @@ private fun MainScreen(
                 )
             }
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 24.dp))
-
-            Text(
-                text = stringResource(R.string.copy_section_title),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-
             val hasX = LinkKind.X in linkKinds
             val hasYoutube = LinkKind.YOUTUBE in linkKinds
             val hasLinks = hasX || hasYoutube
@@ -323,7 +320,7 @@ private fun MainScreen(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    .padding(top = 24.dp),
             ) {
                 Column(
                     modifier = Modifier
@@ -348,14 +345,14 @@ private fun MainScreen(
                         DetectionHint(
                             iconRes = R.drawable.ic_x,
                             circleColor = Color.Black,
-                            text = stringResource(R.string.copy_section_hint_x),
+                            title = stringResource(R.string.copy_section_title_x),
                         )
                     }
                     if (hasYoutube) {
                         DetectionHint(
                             iconRes = R.drawable.ic_youtube,
                             circleColor = YoutubeBrandRed,
-                            text = stringResource(R.string.copy_section_hint_youtube),
+                            title = stringResource(R.string.copy_section_title_youtube),
                         )
                     }
 
@@ -430,15 +427,14 @@ private val YoutubeBrandRed = Color(0xFFFF0000)
 private fun DetectionHint(
     iconRes: Int,
     circleColor: Color,
-    text: String,
+    title: String,
 ) {
     Row(
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Box(
             modifier = Modifier
-                .padding(top = 1.dp)
                 .size(DetectionIconCircleSize)
                 .background(circleColor, CircleShape),
             contentAlignment = Alignment.Center,
@@ -451,9 +447,9 @@ private fun DetectionHint(
             )
         }
         Text(
-            text = text,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            text = title,
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold,
         )
     }
 }
