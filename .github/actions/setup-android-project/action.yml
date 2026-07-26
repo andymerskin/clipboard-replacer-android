@@ -12,13 +12,18 @@ runs:
 
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
+      with:
+        packages: tools platform-tools platforms;android-37.0 build-tools;36.0.0
+        accept-android-sdk-licenses: true
 
-    - name: Install Android SDK packages
+    - name: Link API 37 platform directory
       shell: bash
       run: |
         set -euo pipefail
-        (yes | sdkmanager --licenses >/dev/null 2>&1) || true
-        sdkmanager "platforms;android-37" "build-tools;36.0.0"
+        sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+        if [[ -d "$sdk_root/platforms/android-37.0" && ! -e "$sdk_root/platforms/android-37" ]]; then
+          ln -sfn android-37.0 "$sdk_root/platforms/android-37"
+        fi
 
     - name: Set up Gradle
       uses: gradle/gradle-build-action@v2
