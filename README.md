@@ -62,10 +62,21 @@ Install it one of these ways:
 ./gradlew :app:testDebugUnitTest
 ```
 
+## Releases
+
+Push a version tag to publish a debug APK on GitHub Releases:
+
+```bash
+git tag v0.1.1
+git push origin v0.1.1
+```
+
+The release workflow derives `versionName` and `versionCode` from the tag (no Gradle edit needed). CI runs unit tests on pull requests and pushes to `main`.
+
 ## Requirements
 
 - **Device:** Android 8.0+ (API 26; see `minSdk` in `app/build.gradle.kts`)
-- **Build:** Android Studio Ladybug+ (or equivalent AGP 8.7 toolchain), JDK 17, Android SDK 35+
+- **Build:** Android Studio Ladybug+ (or equivalent AGP 9.3 toolchain), JDK 17, Android SDK 37
 
 ## Project layout
 
@@ -78,5 +89,5 @@ Install it one of these ways:
 
 ## Todos
 
-- [ ] CI / CD for testing and building a debug APK for GitHub Releases
-- [ ] Clean up typography and other UI cruft
+- [x] CI / CD for testing and building a debug APK for GitHub Releases
+- [x] Clean up typography and other UI cruft

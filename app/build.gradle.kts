@@ -12,8 +12,8 @@ android {
         applicationId = "dev.munchkin.clipboardreplacer"
         minSdk = 26
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = (findProperty("VERSION_CODE") as String?)?.toInt() ?: 101
+        versionName = (findProperty("VERSION_NAME") as String?) ?: "0.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

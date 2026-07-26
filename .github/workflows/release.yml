@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Android project
+        uses: ./.github/actions/setup-android-project
+
+      - name: Parse version from tag
+        id: version
+        run: |
+          set -euo pipefail
+          eval "$(./scripts/parse-release-version.sh "$GITHUB_REF_NAME")"
+          echo "name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+
+      - name: Test and build debug APK
+        run: >
+          ./gradlew :app:testDebugUnitTest :app:assembleDebug --stacktrace
+          -PVERSION_NAME="${{ steps.version.outputs.name }}"
+          -PVERSION_CODE="${{ steps.version.outputs.code }}"
+
+      - name: Stage release APK
+        run: |
+          set -euo pipefail
+          release_apk="ClipboardReplacer-${{ steps.version.outputs.name }}-debug.apk"
+          cp "app/build/outputs/apk/debug/ClipboardReplacer-${{ steps.version.outputs.name }}-debug.apk" "$release_apk"
+          echo "RELEASE_APK=$release_apk" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: ${{ env.RELEASE_APK }}
