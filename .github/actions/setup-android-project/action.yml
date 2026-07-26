@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
-        yes | sdkmanager --licenses >/dev/null
+        (yes | sdkmanager --licenses >/dev/null 2>&1) || true
         sdkmanager "platforms;android-37" "build-tools;36.0.0"
 
     - name: Set up Gradle
