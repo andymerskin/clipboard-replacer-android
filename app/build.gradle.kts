@@ -1,17 +1,24 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
     namespace = "dev.munchkin.clipboardreplacer"
-    compileSdk = 37
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 0
+        }
+    }
 
     defaultConfig {
         applicationId = "dev.munchkin.clipboardreplacer"
-        minSdk = 26
-        targetSdk = 37
+        minSdk {
+            version = release(26)
+        }
+        targetSdk {
+            version = release(37)
+        }
         versionCode = (findProperty("VERSION_CODE") as String?)?.toInt() ?: 101
         versionName = (findProperty("VERSION_NAME") as String?) ?: "0.1.1"
 

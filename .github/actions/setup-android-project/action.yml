@@ -16,14 +16,8 @@ runs:
         packages: tools platform-tools platforms;android-37.0 build-tools;36.0.0
         accept-android-sdk-licenses: true
 
-    - name: Link API 37 platform directory
-      shell: bash
-      run: |
-        set -euo pipefail
-        sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
-        if [[ -d "$sdk_root/platforms/android-37.0" && ! -e "$sdk_root/platforms/android-37" ]]; then
-          ln -sfn android-37.0 "$sdk_root/platforms/android-37"
-        fi
-
     - name: Set up Gradle
       uses: gradle/gradle-build-action@v2
+      with:
+        gradle-home-cache-cleanup: true
+        cache-read-only: ${{ github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/') }}
