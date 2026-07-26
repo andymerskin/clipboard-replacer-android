@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Compose owns Material You; this is only the window theme shell. -->
-    <style name="Theme.ClipboardReplacer" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ClipboardReplacer" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
 
     <style name="Theme.ClipboardReplacer.Translucent" parent="Theme.ClipboardReplacer">
         <item name="android:windowIsTranslucent">true</item>
